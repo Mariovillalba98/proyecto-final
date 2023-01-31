@@ -21,13 +21,15 @@ const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const { Game } = require('./src/loadGamesDB/loadGame.js')
 const { genresToDb } = require('./src/loadGamesDB/loadGenre.js')
+require('dotenv').config();
+const {PORT} = process.env;
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   genresToDb().then(()=>{
     Game().then(()=>{
-      server.listen(3001, () => {
-        console.log('%s listening at 3001'); // eslint-disable-line no-console
+      server.listen(PORT, () => {
+        console.log('%s listening at',process.env.PORT ); // eslint-disable-line no-console
       });
     });
   });

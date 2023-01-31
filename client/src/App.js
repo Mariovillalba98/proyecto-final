@@ -6,7 +6,7 @@ import { createTheme } from '@mui/material/styles';
 import {useState} from "react"
 import {ColorContextProvider} from './components/Theme/Theme';
 import axios from 'axios';
-axios.defaults.baseURL="http://localhost:3001/";
+axios.defaults.baseURL="http://localhost:3001";
 
 
 function App() {
