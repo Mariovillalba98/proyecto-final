@@ -9,13 +9,13 @@ import {
   postAllGames,
 } from "../reducers/videoGame";
 
-const API = "http://localhost:3001/";
+
 
 export const getGames = ({ name, rating, price, genre } = "", sort, page) => {
   const queries = `filter[name]=${name}&filter[rating]=${rating}&filter[price]=${price}&filter[genre]=${genre}&options[sort]=${sort}&options[page]=${page}`;
   return async function (dispatch) {
     try {
-      const { data } = await axios(API + `videogames?${queries}`);
+      const { data } = await axios(`/videogames?${queries}`);
       dispatch(
         getAllGames({
           games: data.games,
@@ -36,7 +36,7 @@ export const getGames = ({ name, rating, price, genre } = "", sort, page) => {
 export const getDetails = (id) =>
   async function (dispatch) {
     try {
-      const request = await axios(API + `videogames/${id}`);
+      const request = await axios(`/videogames/${id}`);
       dispatch(getGameById(request.data));
     } catch (error) {
       return;
@@ -46,7 +46,7 @@ export const getDetails = (id) =>
 export const getDiscounts = () => {
   return async function (dispatch) {
     try {
-      const { data } = await axios(API + `discounts`);
+      const { data } = await axios(`/discounts`);
       dispatch(getAllDiscounts(data));
     } catch (error) {
       return;
@@ -68,7 +68,7 @@ export const cleanToFilter = (clean) => {
 export const getGenres = () =>
   async function (dispatch) {
     try {
-      const request = await axios(API + "genres");
+      const request = await axios("/genres");
       dispatch(getAllGenres(request.data));
     } catch (error) {
       return;
@@ -78,7 +78,7 @@ export const getGenres = () =>
   export const postGames = (payload) =>
   async function (dispatch) {
     try {
-      const response = await axios.post(API + "videogames", payload);
+      const response = await axios.post("/videogames", payload);
       dispatch(postAllGames(response));
     } catch (error) {
       return;

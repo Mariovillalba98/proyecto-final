@@ -11,18 +11,18 @@ import {
 	getUserData,
 } from '../reducers/user';
 import { store } from '../store';
-const API = 'http://localhost:3001/';
+
 
 export const getUserInfo = (email, auth) => {
 	return async function (dispatch) {
 		try {
-			const { data } = await axios.post(API + 'login', { email });
+			const { data } = await axios.post('/login', { email });
 			if (auth) return data;
 			dispatch(setInfo(data));
 
-			const updatedData = await axios.put(API + `user/${data.id}`, data);
+			const updatedData = await axios.put(`/user/${data.id}`, data);
 			const  purchases  = await axios.get(
-				`${API}orders/user/${data.id}`
+				`/orders/user/${data.id}`
 			);
 			dispatch(getUserData(updatedData.data.user));
 			dispatch(addPurchases(purchases.data.PurchaseOrders));
@@ -43,7 +43,7 @@ export const addToCart = (game) => {
 			dispatch(updateCart(newCart));
 		} else if (!alreadyIs && status !== 'guest') {
 			try {
-				await axios.put(API + `user/${id}`, {
+				await axios.put(`/user/${id}`, {
 					cart: newCart,
 				});
 				dispatch(updateCart(newCart));
@@ -68,7 +68,7 @@ export const deleteFromCart = (gameId) => {
 			dispatch(updateCart(newCart));
 		} else {
 			try {
-				await axios.put(API + `user/${id}`, {
+				await axios.put(`/user/${id}`, {
 					cart: newCart,
 				});
 				dispatch(updateCart(newCart));
@@ -88,7 +88,7 @@ export const clearCart = () => {
 			dispatch(updateCart([]));
 		} else {
 			try {
-				await axios.put(API + `user/${id}`, {
+				await axios.put(`/user/${id}`, {
 					cart: [],
 				});
 				dispatch(updateCart([]));
@@ -113,7 +113,7 @@ export const addOneFn = (gameId) => {
 			const parseCart = JSON.stringify([...listCopy]);
 			localStorage.setItem('cartList', parseCart);
 		} else {
-			await axios.put(API + `user/${id}`, {
+			await axios.put(`/user/${id}`, {
 				cart: listCopy,
 			});
 		}
@@ -134,7 +134,7 @@ export const removeOneFn = (gameId) => {
 			const parseCart = JSON.stringify([...listCopy]);
 			localStorage.setItem('cartList', parseCart);
 		} else {
-			await axios.put(API + `user/${id}`, {
+			await axios.put(`/user/${id}`, {
 				cart: listCopy,
 			});
 		}
@@ -146,7 +146,7 @@ export const addNewWish = (game) => {
 	return async function (dispatch) {
 		const newList = [...wishes, game];
 		try {
-			await axios.put(API + `user/${id}`, {
+			await axios.put(`/user/${id}`, {
 				deseos: newList,
 			});
 			dispatch(updateWishes(newList));
@@ -161,7 +161,7 @@ export const deleteWish = (gameId) => {
 			const newList = wishes.filter(
 				(dbGame) => Number(dbGame.id) !== Number(gameId)
 			);
-			await axios.put(API + `user/${id}`, {
+			await axios.put(`/user/${id}`, {
 				deseos: newList,
 			});
 			dispatch(updateWishes(newList));
@@ -190,7 +190,7 @@ export const addCollection = (game) => {
 export const getUserComments = (ID) => {
 	return async function (dispatch) {
 		try {
-			const { data } = await axios.get(API + 'user/comments?userID=' + ID);
+			const { data } = await axios.get('/user/comments?userID=' + ID);
 			dispatch(getAllUserComments(data));
 		} catch (error) {
 			return null;
@@ -201,7 +201,7 @@ export const getUserComments = (ID) => {
 export const putUserData = (ID, data) => {
 	return async function (dispatch) {
 		try {
-			const updatedData = await axios.put(API + `user/${ID}`, data);
+			const updatedData = await axios.put(`/user/${ID}`, data);
 			dispatch(getUserData(updatedData.data.user));
 		} catch (error) {
 			return null;
