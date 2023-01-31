@@ -34,7 +34,7 @@ const LandingPage = () => {
 						className="button-recipe3"
 						
 					>
-						Start Game
+						Start 
 					</Button>
 				</MuiLink>
 				</Box>
