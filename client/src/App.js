@@ -6,7 +6,7 @@ import { createTheme } from '@mui/material/styles';
 import {useState} from "react"
 import {ColorContextProvider} from './components/Theme/Theme';
 import axios from 'axios';
-axios.defaults.baseURL="https://proyecto-final-production-50cf.up.railway.app";
+axios.defaults.baseURL="https://proyecto-final-production-13d6.up.railway.app";
 
 
 function App() {
