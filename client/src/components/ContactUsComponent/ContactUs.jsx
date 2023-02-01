@@ -7,35 +7,51 @@ import Swal from 'sweetalert2';
 import "./ContactUs.css"
 import validation from './validations';
 import { Check, PriorityHigh } from '@mui/icons-material';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import Card from '@mui/material/Card';
+import { CardContent } from '@mui/material';
 
 
 
 const ContactComponent = () => {
+  const [errors, setErrors] = useState({})
     const [result, setResult] = useState(false)
     const [contactInfo, setContactInfo] = useState({
       phone:"",
       fullName:"",
       email:""
     })
-    const [errors, setErrors] = useState({})
+
     
    
-    useEffect(() => {
-      const check = validation(contactInfo);
-      setErrors(check);
-      
-    }, [contactInfo]);
+    function handleChange(e){
+      setContactInfo({
+           ...contactInfo,
+           [e.target.name] : e.target.value
+       }) 
+       setErrors(validation({
+           ...contactInfo,
+           [e.target.name]:e.target.value
+   }))
+   
+   }
 
-    function handleChange(e) {
-      const value = e.target.value;
-      const name = e.target.name;
+    // function handleChange(e) {
+    //   const value = e.target.value;
+    //   const name = e.target.name;
   
-      setContactInfo((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    }
+    //   setContactInfo((prev) => ({
+    //     ...prev,
+    //     [name]: value,
+    //   }));
+    // }
 
+    // useEffect(() => {
+    //   const check = validation(contactInfo);
+    //   setErrors(check);
+      
+    // }, [contactInfo]);
 
    
     const sendEmail = (e) => {
@@ -55,118 +71,122 @@ const ContactComponent = () => {
       
       
       return(
-          
-    <Box id="contacto" className="boxcontact" sx={{marginTop:"50px",}}  >
+        <div>
+        <Card sx={{minWidth:345 ,maxWidth:"100%", marginTop:"5%" }} >
+<Box
+component="form"
+sx={{
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "1rem",
+  backgroundColor:"rgb(237, 237, 237)",
+  width:"100%"
+}}
+noValidate
+autoComplete="off"
+>
 
-        <Box id="contacto" sx={{display:"inline-block", width:"50%", margin:"100px", backgroundColor:"#edf2f4", borderRadius:"20px",  height:"605px"}}>
+  
 
-          <form  onSubmit={sendEmail}>
-            
-            <Box sx={{display:"flex", flexDirection:"column", justifyContent:"space-evenly", height: "605px", padding:"40px", borderRadius:"20px", boxShadow: 4 , border:"solid 1px",  }}>
-         
-         <Box container  sx={{display:"flex", flexDirection:"column", gap:"8px", textAlign:"start", color:"#091d36" }}>
-         <Typography  variant='h5' gutterBottom fontWeight={"bold"}>
-                Contact Us!
-            </Typography>
-            <label htmlFor=""> Full Name</label>
-            <TextField
-            id="outlined-textarea"
-            
-            multiline
-            required
-            type={"text"}
-            name={"fullName"}
-            value={contactInfo.fullName}
-            sx={{boxShadow:"3", width:"250px", }}
-            onChange={handleChange}
-            color={
-              errors?.name  ? (
-                  "error"
-              ): "success"
-            }
-            placeholder='Pepe Gutierrez'
-            InputProps={{ inputProps: { style: { color: 'black' }}}}
-            
-            
-            />
-             
-             
-            
-            
-            <label htmlFor=""> Phone Number</label>
-            <Box>
 
-            <TextField
-            id="outlined-textarea"
-            multiline
-            required
-            type={"text"}
-            name={"phone"}
-            value={contactInfo.phone}
-            sx={{boxShadow:"3", width:"250px", backgroundColor:"white"}}
-            color={
-              errors?.phoneFormat ? (
-                "error"
-              ): "success"
-            }
-            onChange={handleChange}
-            
-            placeholder="1135462365"
-            className='text'
-            InputProps={{ inputProps: { style: { color: 'black' }}}}
-            />
-            
-           
-            </Box>
-            
-           <label htmlFor="">Enter Email</label>
-           
+      
+      
+   
+   
+   <Typography sx={{marginTop:"5%"}}  variant='h5' gutterBottom fontWeight={"bold"}>
+          Contact Us!
+      </Typography>
 
-            <TextField
-            id="outlined-textarea"
-            
-            multiline
-            required
-            type={"email"}
-            name={"email"}
-            value={contactInfo.email}
-            sx={{boxShadow:"3", width:"250px", backgroundColor:"white"}}
-            color={
-              errors.emailFormat ? (
-                "error"
-              ): "success"
-            }
-            className='textfield'
-            onChange={handleChange}
-            placeholder="emaildeprueba@gmail.com"
-            InputProps={{ inputProps: { style: { color: 'black' }}}}
-            />
-           
-          
-            
-        </Box>
-            <Box sx={{display:"flex", flexDirection:"column", textAlign:"start" , gap:"10px", color:"#091d36"}}>
-              
-            
-            <label htmlFor="" >Message</label>
-            <TextField
-              id="outlined-multiline-static"
-              multiline
-              rows={3}
-              sx={{marginRight:"20px", boxShadow:"3", backgroundColor:"white" }}
-              color={window.localStorage.getItem("themeMode") === "dark" ? "primary" : "primary"}
-              InputProps={{ inputProps: { style: { color: 'black' }}}}
-              
-              />
-            
-              <Button type='submit' sx={{backgroundColor:"#5e83ba", width:"50%", color:"#091d36", marginTop:"50px" ,"&:hover": {backgroundColor:"#091d36", color:"#5e83ba"}}} disabled={!errors?.emailFormat && !errors?.phoneFormat ? false : true} >Submit</Button>
-            </Box>
-            
-            </Box>
-        </form>
-        </Box>
-       
-    </Box>
+
+
+{(!errors.fullName)? <FormControl sx={{width:"50%"}}  variant="standard">
+                            <InputLabel  htmlFor="component-simple">Name</InputLabel>
+                            <Input id="component-simple" name="fullName" value={contactInfo.fullName} onChange={handleChange} />
+                        </FormControl>
+                            :
+                        <FormControl sx={{width:"50%"}}  error variant="standard">
+                            <InputLabel htmlFor="component-error">Name</InputLabel>
+                            <Input
+                            id="component-error"
+                            name="fullName"
+                            value={contactInfo.fullName}
+                            onChange={handleChange}
+                            aria-describedby="component-error-text"/>
+                            <FormHelperText id="component-error-text">{errors.fullName}</FormHelperText>
+                        </FormControl>}
+
+{console.log(errors)}
+
+
+
+
+
+
+{(!errors.phone)? <FormControl sx={{width:"50%"}}   variant="standard">
+                            <InputLabel  htmlFor="component-simple">Phone</InputLabel>
+                            <Input id="component-simple" name="phone" value={contactInfo.phone} onChange={handleChange} />
+                        </FormControl>
+                            :
+                        <FormControl sx={{width:"50%"}}  error variant="standard">
+                            <InputLabel htmlFor="component-error">Phone</InputLabel>
+                            <Input
+                            id="component-error"
+                            name="phone"
+                            value={contactInfo.phone}
+                            onChange={handleChange}
+                            aria-describedby="component-error-text"/>
+                            <FormHelperText id="component-error-text">{errors.phone}</FormHelperText>
+                        </FormControl>}
+
+      
+     
+
+      
+
+     
+    
+
+
+     {!errors.email? <FormControl sx={{width:"50%"}}  variant="standard">
+                            <InputLabel  htmlFor="component-simple">Email</InputLabel>
+                            <Input id="component-simple" name="email" value={contactInfo.email} onChange={handleChange} />
+                        </FormControl>
+                            :
+                        <FormControl sx={{width:"50%"}}  error variant="standard">
+                            <InputLabel htmlFor="component-error">Email</InputLabel>
+                            <Input
+                            id="component-error"
+                            name="email"
+                            value={contactInfo.email}
+                            onChange={handleChange}
+                            aria-describedby="component-error-text"/>
+                            <FormHelperText id="component-error-text">{errors.email}</FormHelperText>
+                        </FormControl>}
+      
+
+        
+      
+      <TextField
+        id="outlined-multiline-static"
+        multiline
+        rows={3}
+        sx={{marginRight:"20px", boxShadow:"3", backgroundColor:"white", width:"50%" }}
+        color={window.localStorage.getItem("themeMode") === "dark" ? "primary" : "primary"}
+        InputProps={{ inputProps: { style: { color: 'black' }}}}
+        placeholder="Message"
+        
+        />
+
+        
+        <Button onClick={(e)=>sendEmail(e)} type='submit' sx={{backgroundColor:"#5e83ba", width:"50%", color:"#091d36",marginBottom:"5%" ,marginTop:"50px" ,"&:hover": {backgroundColor:"#091d36", color:"#5e83ba"}}} disabled={!errors?.email && !errors?.phone && contactInfo.phone!=="" && contactInfo.email!=="" ? false : true} >Submit</Button>
+
+
+
+  </Box>
+  </Card>
+  </div>
       )
  }
 
