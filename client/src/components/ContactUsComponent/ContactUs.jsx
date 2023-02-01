@@ -11,10 +11,15 @@ import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import Card from '@mui/material/Card';
 import { CardContent } from '@mui/material';
+import { ColorModeContext } from "../Theme/Theme";
+import { useContext } from 'react';
+import { useTheme } from '@mui/material/styles';
 
 
 
 const ContactComponent = () => {
+  const theme = useTheme();
+	const { mode, toggleMode } = useContext(ColorModeContext);
   const [errors, setErrors] = useState({})
     const [result, setResult] = useState(false)
     const [contactInfo, setContactInfo] = useState({
@@ -23,8 +28,7 @@ const ContactComponent = () => {
       email:""
     })
 
-    
-   
+
     function handleChange(e){
       setContactInfo({
            ...contactInfo,
@@ -68,21 +72,24 @@ const ContactComponent = () => {
       };
 
     
-      
+      //"rgb(237, 237, 237)"
       
       return(
         <div>
-        <Card sx={{minWidth:345 ,maxWidth:"100%", marginTop:"5%" }} >
+        <Card sx={{minWidth:345 ,maxWidth:"100%", marginTop:"5%" }}
+>
+
 <Box
 component="form"
+
 sx={{
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
   gap: "1rem",
-  backgroundColor:"rgb(237, 237, 237)",
-  width:"100%"
+  width:"100%",
+
 }}
 noValidate
 autoComplete="off"

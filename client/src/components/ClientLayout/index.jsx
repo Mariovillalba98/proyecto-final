@@ -10,7 +10,7 @@ export default function ClientLayout({ children }) {
   return (
     <>
       <Navbar />
-      <Box sx={mode === 'dark' ? { backgroundColor: 'black' } : { backgroundColor: 'white' }}>
+      <Box sx={mode === 'dark' ? { backgroundColor: 'black' } : { backgroundColor: 'rgb(237, 237, 237)' }}>
       <Box maxWidth="lg">{children}</Box>
       <Footer />
       </Box>
