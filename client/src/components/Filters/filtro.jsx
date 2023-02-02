@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setLoading } from "../../redux/reducers/videoGame";
 import { useEffect } from "react";
 import { getGames } from "../../redux/actions/videoGame";
-import { Box, Button, List, ListItem, Menu, MenuItem } from "@mui/material";
+import { Box, Button, List, ListItem, Menu, MenuItem, Typography } from "@mui/material";
 import { KeyboardArrowDown } from "@mui/icons-material";
 import "./filter.css";
 import DisableElevation from "./CleanButton";
@@ -102,7 +102,7 @@ export default function Filter() {
                   : "black"
               }
             >
-              FILTERS
+             <Typography variant="h5">FILTERS</Typography> 
             </Box>
           }
         >

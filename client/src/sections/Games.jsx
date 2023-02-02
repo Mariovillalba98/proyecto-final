@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import { changePage } from "../redux/reducers/videoGame";
 
@@ -30,7 +30,7 @@ const Games = () => {
 
   if (loading) return <Loader />;
   else if (!games.length && !loading)
-    return <h3>Uups... no match for your search.</h3>;
+    return <Typography sx={{color:"secondary.main"}} >Uups... no match for your search.</Typography>;
 
   return (
     <Box flex={6} paddingTop={{xs: 5, sm:0}}>

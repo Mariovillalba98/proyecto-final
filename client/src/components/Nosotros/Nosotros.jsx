@@ -39,9 +39,48 @@ export default function MediaControlCard() {
 				 During this experience we learned a lot about programming and about communication and working together.
 			</Typography>
 			  	
-				<Grid container direction="row" spacing={6} margin={8}>
-				<Grid item xs={3.5} >
-				<Card sx={{ display: 'flex' }}>
+			<Box 
+				sx={{
+				display: "flex",
+				justifyContent: "center",
+				flexWrap: "wrap",
+				width:"100%"
+				}}
+			>
+				<Card sx={{ display: 'flex',minWidth: 420, maxWidth: 420, margin: "1rem", }}>
+					<Box sx={{ width:"100%", display: 'flex', flexDirection: 'column' }}>
+						<CardContent sx={{ flex: '1 0 auto' }}>
+							<Typography component="div" variant="h5">
+								Mario Villalba
+							</Typography>
+							<Typography
+								variant="subtitle1"
+								color="text.secondary"
+								component="div"
+							>
+								Software Developer
+							</Typography>
+						</CardContent>
+						<Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+							<Link href='https://www.linkedin.com/in/mario-villalba-8b7136179/'
+								  sx={mode === 'dark' ? { color: 'white' } : { color: 'black' }}>
+								<LinkedInIcon sx={{ height: 38, width: 38 }}/>
+								</Link>
+							<Link href='https://github.com/Mariovillalba98'
+								  sx={mode === 'dark' ? { color: 'white' } : { color: 'black' }}>
+								<GitHubIcon  sx={{ height: 34, width: 34 }}/>
+							</Link>
+						</Box>
+					</Box>
+					<CardMedia
+						component="img"
+						sx={{ width: 151 }}
+						image={imagen}
+						alt="Live from space album cover"
+					/>
+				</Card>		
+
+				<Card sx={{ display: 'flex',minWidth: 420, maxWidth: 420, margin: "1rem", }}>
 					<Box sx={{ width:"100%", display: 'flex', flexDirection: 'column' }}>
 						<CardContent sx={{ flex: '1 0 auto' }}>
 							<Typography component="div" variant="h5">
@@ -75,10 +114,9 @@ export default function MediaControlCard() {
 						alt="Live from space album cover"
 					/>
 				</Card>		
-				</Grid>
 
-				<Grid item xs={3.5} >
-				<Card sx={{ display: 'flex' }}>
+
+				<Card sx={{ display: 'flex',minWidth: 420, maxWidth: 420, margin: "1rem", }}>
 					<Box sx={{ width:"100%", display: 'flex', flexDirection: 'column' }}>
 						<CardContent sx={{ flex: '1 0 auto' }}>
 							<Typography component="div" variant="h5">
@@ -110,45 +148,8 @@ export default function MediaControlCard() {
 						alt="Live from space album cover"
 					/>
 				</Card>		
-				</Grid>
 
-				<Grid item xs={3.5} >
-				<Card sx={{ display: 'flex' }}>
-					<Box sx={{ width:"100%", display: 'flex', flexDirection: 'column' }}>
-						<CardContent sx={{ flex: '1 0 auto' }}>
-							<Typography component="div" variant="h5">
-								Mario Villalba
-							</Typography>
-							<Typography
-								variant="subtitle1"
-								color="text.secondary"
-								component="div"
-							>
-								Software Developer
-							</Typography>
-						</CardContent>
-						<Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-							<Link href='https://www.linkedin.com/in/mario-villalba-8b7136179/'
-								  sx={mode === 'dark' ? { color: 'white' } : { color: 'black' }}>
-								<LinkedInIcon sx={{ height: 38, width: 38 }}/>
-								</Link>
-							<Link href='https://github.com/Mariovillalba98'
-								  sx={mode === 'dark' ? { color: 'white' } : { color: 'black' }}>
-								<GitHubIcon  sx={{ height: 34, width: 34 }}/>
-							</Link>
-						</Box>
-					</Box>
-					<CardMedia
-						component="img"
-						sx={{ width: 151 }}
-						image={imagen}
-						alt="Live from space album cover"
-					/>
-				</Card>		
-				</Grid>
-
-				<Grid item xs={3.5} >
-				<Card sx={{ display: 'flex' }}>
+				<Card sx={{ display: 'flex',minWidth: 420, maxWidth: 420, margin: "1rem", }}>
 					<Box sx={{ width:"100%", display: 'flex', flexDirection: 'column' }}>
 						<CardContent sx={{ flex: '1 0 auto' }}>
 							<Typography component="div" variant="h5">
@@ -180,10 +181,8 @@ export default function MediaControlCard() {
 						alt="Live from space album cover"
 					/>
 				</Card>		
-				</Grid>
 
-				<Grid item xs={3.5} >
-				<Card sx={{ display: 'flex' }}>
+				<Card sx={{ display: 'flex',minWidth: 420, maxWidth: 420, margin: "1rem", }}>
 					<Box sx={{ width:"100%", display: 'flex', flexDirection: 'column' }}>
 						<CardContent sx={{ flex: '1 0 auto' }}>
 							<Typography component="div" variant="h5">
@@ -215,10 +214,8 @@ export default function MediaControlCard() {
 						alt="Live from space album cover"
 					/>
 				</Card>		
-				</Grid>
 
-				<Grid item xs={3.5} >
-				<Card sx={{ display: 'flex' }}>
+				<Card sx={{ display: 'flex',minWidth: 420, maxWidth: 420, margin: "1rem", }}>
 					<Box sx={{ width:"100%", display: 'flex', flexDirection: 'column' }}>
 						<CardContent sx={{ flex: '1 0 auto' }}>
 							<Typography component="div" variant="h5">
@@ -250,10 +247,8 @@ export default function MediaControlCard() {
 						alt="Live from space album cover"
 					/>
 				</Card>		
-				</Grid>
 
-				<Grid item xs={3.5} >
-				<Card sx={{ display: 'flex' }}>
+				<Card sx={{ display: 'flex',minWidth: 420, maxWidth: 420, margin: "1rem", }}>
 					<Box sx={{ width:"100%", display: 'flex', flexDirection: 'column' }}>
 						<CardContent sx={{ flex: '1 0 auto' }}>
 							<Typography component="div" variant="h5">
@@ -285,10 +280,8 @@ export default function MediaControlCard() {
 						alt="Live from space album cover"
 					/>
 				</Card>		
-				</Grid>
 
-				<Grid item xs={3.5} >
-				<Card sx={{ display: 'flex' }}>
+				<Card sx={{ display: 'flex',minWidth: 420, maxWidth: 420, margin: "1rem", }}>
 					<Box sx={{ width:"100%", display: 'flex', flexDirection: 'column' }}>
 						<CardContent sx={{ flex: '1 0 auto' }}>
 							<Typography component="div" variant="h5">
@@ -320,12 +313,7 @@ export default function MediaControlCard() {
 						alt="Live from space album cover"
 					/>
 				</Card>		
-				</Grid>
-
-				
-
-				
-				</Grid>
+				</Box>
 		</div>
 	);
 }
