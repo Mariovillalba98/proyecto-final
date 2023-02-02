@@ -94,13 +94,12 @@ export default function Detail() {
               ></Typography>
               <b>{details.name}</b>
             </Typography>
-            <Box display="flex" flexDirection={{xs: 'column', md:'row'}} justifyContent='center' alignItems={{xs: 'center', md:'flex-start'}} className="boxDivisor">
+            <Box sx={{minWidth:200, maxWidth:"100%"}} display="flex" flexDirection={{xs: 'column', md:'row'}} justifyContent='center' alignItems={{xs: 'center', md:'flex-start'}} className="boxDivisor">
               <Box
                 className="containerNombreImagenDescription"
                 backgroundColor="secondary.light"
-                width={650}
                 borderRadius={3}
-                sx={{ border: "grey" }}
+                sx={{ border: "grey", minwidth:400, maxWidth:600}}
               >
                 <Box
                   display="flex"
@@ -110,7 +109,9 @@ export default function Detail() {
                     borderColor: "#42a5f5",
                     alignItems: "center",
                     justifyContent: "space-evenly",
-                  }}
+                    minWidth:200, maxWidth:"100%"
+                  }
+                  }
                 >
                   <Box
                     display="contents"
@@ -152,7 +153,7 @@ export default function Detail() {
                   </Box>
                 </Box>
                 <Box
-                  width={650}
+                  width="100%"
                   height={300}
                   alignItems="center"
                   className="imagen"
@@ -166,6 +167,9 @@ export default function Detail() {
                     ))}
                   </Carousel>
                 </Box>
+
+
+                
                 <Box
                   className="description"
                   borderRadius={0.5}
@@ -182,10 +186,13 @@ export default function Detail() {
                   </Typography>
                 </Box>
               </Box>
+
+
+
               <Box
                 className="requeriments"
                 margin={1.5}
-                sx={{ borderRadius: 1}}
+                sx={{ borderRadius: 1, maxWidth:400}}
                 backgroundColor="secondary.light"
               >
                 {/* REQUERIMIENTOS */}
